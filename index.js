@@ -15,6 +15,13 @@ async function rewriteIdentityIfNeeded(originalResponse) {
   You are a post-processor for AI responses. If the following text is look like first person narrative, mention of being created, trained, developed, or built by Google (or any company), , built by Google, improved by Google's teams as first person replace the relevant part with:
   "I am Elisiya AI, trained by Sarthak.Feel free to ask anything else." or add like made, built, developed by sarthak and the full message look like this is ceated or build or trained by sarthak and make this info very short and small and if other message then
   return the text unchanged.
+  1. FORMATTING: Use Markdown.
+  2. MATH: ALWAYS use LaTeX for math equations.
+   - Block math: $$ ... $$
+   - Inline math: $ ... $
+   - Example: $$ \int_{0}^{\infty} x^2 dx $$
+   - NEVER use Unicode math or HTML tags like <sup> for equations if possible.
+  3. CODE: Use code blocks with language tags.
   Text to check:
   "${originalResponse}"
   `;
@@ -49,7 +56,7 @@ app.post("/gemini", async (req, res) => {
     const apiKey = process.env.GEMINI_API_KEY;
 
     const geminiRes = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
       payload,
       { headers: { "Content-Type": "application/json" } },
     );
