@@ -26,7 +26,7 @@ async function rewriteIdentityIfNeeded(originalResponse) {
 
   try {
     const geminiRes = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
       payload,
       { headers: { "Content-Type": "application/json" } },
     );
@@ -49,7 +49,7 @@ app.post("/gemini", async (req, res) => {
     const apiKey = process.env.GEMINI_API_KEY;
 
     const geminiRes = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}
       payload,
       { headers: { "Content-Type": "application/json" } },
     );
